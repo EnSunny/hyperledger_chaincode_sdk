@@ -1,4 +1,4 @@
-package main.java.kr.hecate.hyperledger.user;
+package kr.hecate.hyperledger.user;
 
 
 import org.hyperledger.fabric.sdk.Enrollment;

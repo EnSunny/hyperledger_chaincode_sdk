@@ -1,7 +1,7 @@
-package main.java.kr.hecate.hyperledger.util;
+package kr.hecate.hyperledger.util;
 
-import main.java.kr.hecate.hyperledger.user.CAEnrollment;
-import main.java.kr.hecate.hyperledger.user.UserContext;
+import kr.hecate.hyperledger.user.CAEnrollment;
+import kr.hecate.hyperledger.user.UserContext;
 import org.hyperledger.fabric.sdk.exception.CryptoException;
 import org.slf4j.LoggerFactory;
 
@@ -115,7 +115,6 @@ public class Util {
         CAEnrollment enrollment = new CAEnrollment(key, certificate);
 
         return enrollment;
-
     }
 
     public static void cleanUp() {
@@ -134,7 +133,6 @@ public class Util {
                 }
             }
         }
-
         // either file or an empty directory
         logger.info("Deleting - " + dir.getName());
         return dir.delete();

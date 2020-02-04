@@ -1,4 +1,4 @@
-package main.java.kr.hecate.hyperledger.client;
+package kr.hecate.hyperledger.client;
 
 import org.hyperledger.fabric.protos.peer.Chaincode;
 import org.hyperledger.fabric.sdk.*;

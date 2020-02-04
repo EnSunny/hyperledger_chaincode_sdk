@@ -1,4 +1,4 @@
-package main.java.kr.hecate.hyperledger.client;
+package kr.hecate.hyperledger.client;
 
 import org.hyperledger.fabric.sdk.*;
 import org.hyperledger.fabric.sdk.exception.CryptoException;
@@ -75,7 +75,7 @@ public class FabricClient {
      * @throws ProposalException
      */
 
-    public Collection<ProposalResponse> deployChaincode(String chainCodeName, String chaincodePath, String codepath
+    public Collection<ProposalResponse> deployChainCode(String chainCodeName, String chaincodePath, String codepath
     , String language, String version, Collection<Peer> peers) throws InvalidArgumentException, IOException, ProposalException {
 
         InstallProposalRequest request = instance.newInstallProposalRequest();
