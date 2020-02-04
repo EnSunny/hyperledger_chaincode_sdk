@@ -1,12 +1,20 @@
 package kr.hecate.hyperledger.util;
 
+import kr.hecate.hyperledger.config.Config;
 import kr.hecate.hyperledger.user.CAEnrollment;
 import kr.hecate.hyperledger.user.UserContext;
 import org.hyperledger.fabric.sdk.exception.CryptoException;
 import org.slf4j.LoggerFactory;
 
-import javax.xml.bind.DatatypeConverter;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.KeyFactory;
@@ -14,6 +22,8 @@ import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
+
+import javax.xml.bind.DatatypeConverter;
 
 public class Util {
 
@@ -27,12 +37,12 @@ public class Util {
      */
 
     public static void wirteUserContext(UserContext userContext) throws Exception{
-        String directoryPath = "user/" + userContext.getAffiliation();
+        String directoryPath = Config.CRYPTO_PATH + File.separator + "users/" + userContext.getAffiliation();
         String filePath = directoryPath + "/" + userContext.getName() + ".ser";
         File directory = new File(directoryPath);
 
         if(!directory.exists()){
-            directory.mkdir();
+            directory.mkdirs();
         }
 
         FileOutputStream file = new FileOutputStream(filePath);
@@ -53,7 +63,7 @@ public class Util {
      * @throws Exception
      */
     public static UserContext readUserContext(String affiliation, String username) throws Exception {
-        String filePath = "user/" + affiliation + "/" + username + ".ser";
+        String filePath = Config.CRYPTO_PATH + File.separator + "users/" + affiliation + "/" + username + ".ser";
         File file = new File(filePath);
         if (file.exists()) {
             FileInputStream fileInputStream = new FileInputStream(filePath);

@@ -75,7 +75,7 @@ public class CAClient {
     public UserContext enrollAdminUser(String username, String password) throws Exception{
         UserContext userContext = Util.readUserContext(adminContext.getAffiliation(), username);
         if(userContext != null) {
-            logger.warn("CA -" + caUrl + " admin si alread enrolled.");
+            logger.warn("CA -" + caUrl + " admin is already enrolled.");
             return userContext;
         }
         Enrollment adminEnrollment = instance.enroll(username, password);
