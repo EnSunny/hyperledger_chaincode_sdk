@@ -3,7 +3,7 @@ package kr.hecate.hyperledger.chaincode;
 import kr.hecate.hyperledger.client.CAClient;
 import kr.hecate.hyperledger.client.ChannelClient;
 import kr.hecate.hyperledger.client.FabricClient;
-import kr.hecate.hyperledger.config.Config;
+import kr.hecate.hyperledger.config.ConfigConstants;
 import kr.hecate.hyperledger.user.UserContext;
 import kr.hecate.hyperledger.util.Util;
 import org.hyperledger.fabric.sdk.*;
@@ -22,23 +22,23 @@ public class QueryChaincode {
     public static void main(String args[]) {
         try {
             //Util.cleanUp();
-            String caUrl = Config.CA_ORG1_URL;
+            String caUrl = ConfigConstants.CA_ORG1_URL;
             CAClient caClient = new CAClient(caUrl, null);
             // Enroll Admin to Org1MSP
             UserContext adminUserContext = new UserContext();
-            adminUserContext.setName(Config.ADMIN);
-            adminUserContext.setAffiliation(Config.ORG1);
-            adminUserContext.setMspId(Config.ORG1_MSP);
+            adminUserContext.setName(ConfigConstants.ADMIN);
+            adminUserContext.setAffiliation(ConfigConstants.ORG1);
+            adminUserContext.setMspId(ConfigConstants.ORG1_MSP);
             caClient.setAdminUserContext(adminUserContext);
-            adminUserContext = caClient.enrollAdminUser(Config.ADMIN, Config.ADMIN_PASSWORD);
+            adminUserContext = caClient.enrollAdminUser(ConfigConstants.ADMIN, ConfigConstants.ADMIN_PASSWORD);
 
             FabricClient fabClient = new FabricClient(adminUserContext);
 
-            ChannelClient channelClient = fabClient.createChannelClient(Config.CHANNEL_NAME);
+            ChannelClient channelClient = fabClient.createChannelClient(ConfigConstants.CHANNEL_NAME);
             Channel channel = channelClient.getChannel();
-            Peer peer = fabClient.getInstance().newPeer(Config.ORG1_PEER_0, Config.ORG1_PEER_0_URL);
+            Peer peer = fabClient.getInstance().newPeer(ConfigConstants.ORG1_PEER_0, ConfigConstants.ORG1_PEER_0_URL);
             EventHub eventHub = fabClient.getInstance().newEventHub("eventhub01", "grpc://localhost:7053");
-            Orderer orderer = fabClient.getInstance().newOrderer(Config.ORDERER_NAME, Config.ORDERER_URL);
+            Orderer orderer = fabClient.getInstance().newOrderer(ConfigConstants.ORDERER_NAME, ConfigConstants.ORDERER_URL);
             channel.addPeer(peer);
             channel.addEventHub(eventHub);
             channel.addOrderer(orderer);
