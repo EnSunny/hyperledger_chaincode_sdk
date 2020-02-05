@@ -1,31 +1,31 @@
 package kr.hecate.hyperledger.user;
 
 import kr.hecate.hyperledger.client.CAClient;
-import kr.hecate.hyperledger.config.Config;
+import kr.hecate.hyperledger.config.ConfigConstants;
 import kr.hecate.hyperledger.util.Util;
 
 public class RegisterEnrollUser {
     public static void main(String args[]) {
         try {
             Util.cleanUp();
-            String caUrl = Config.CA_ORG1_URL;
+            String caUrl = ConfigConstants.CA_ORG1_URL;
             CAClient caClient = new CAClient(caUrl, null);
             // Enroll Admin to Org1MSP
             UserContext adminUserContext = new UserContext();
-            adminUserContext.setName(Config.ADMIN);
-            adminUserContext.setAffiliation(Config.ORG1);
-            adminUserContext.setMspId(Config.ORG1_MSP);
+            adminUserContext.setName(ConfigConstants.ADMIN);
+            adminUserContext.setAffiliation(ConfigConstants.ORG1);
+            adminUserContext.setMspId(ConfigConstants.ORG1_MSP);
             caClient.setAdminUserContext(adminUserContext);
-            adminUserContext = caClient.enrollAdminUser(Config.ADMIN, Config.ADMIN_PASSWORD);
+            adminUserContext = caClient.enrollAdminUser(ConfigConstants.ADMIN, ConfigConstants.ADMIN_PASSWORD);
 
             // Register and Enroll user to Org1MSP
             UserContext userContext = new UserContext();
             String name = "user"+System.currentTimeMillis();
             userContext.setName(name);
-            userContext.setAffiliation(Config.ORG1);
-            userContext.setMspId(Config.ORG1_MSP);
+            userContext.setAffiliation(ConfigConstants.ORG1);
+            userContext.setMspId(ConfigConstants.ORG1_MSP);
 
-            String eSecret = caClient.registerUser(name, Config.ORG1);
+            String eSecret = caClient.registerUser(name, ConfigConstants.ORG1);
 
             userContext = caClient.enrollUser(userContext, eSecret);
 
