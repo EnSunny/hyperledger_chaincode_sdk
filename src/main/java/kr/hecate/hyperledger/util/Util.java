@@ -1,6 +1,6 @@
 package kr.hecate.hyperledger.util;
 
-import kr.hecate.hyperledger.config.ConfigConstants;
+import kr.hecate.hyperledger.config.ConfigureConstants;
 import kr.hecate.hyperledger.user.CAEnrollment;
 import kr.hecate.hyperledger.user.UserContext;
 import org.hyperledger.fabric.sdk.exception.CryptoException;
@@ -37,7 +37,7 @@ public class Util {
      */
 
     public static void wirteUserContext(UserContext userContext) throws Exception{
-        String directoryPath = ConfigConstants.CRYPTO_PATH + File.separator + "users/" + userContext.getAffiliation();
+        String directoryPath = ConfigureConstants.CRYPTO_PATH + File.separator + "users/" + userContext.getAffiliation();
         String filePath = directoryPath + "/" + userContext.getName() + ".ser";
         File directory = new File(directoryPath);
 
@@ -63,7 +63,7 @@ public class Util {
      * @throws Exception
      */
     public static UserContext readUserContext(String affiliation, String username) throws Exception {
-        String filePath = ConfigConstants.CRYPTO_PATH + File.separator + "users/" + affiliation + "/" + username + ".ser";
+        String filePath = ConfigureConstants.CRYPTO_PATH + File.separator + "users/" + affiliation + "/" + username + ".ser";
         File file = new File(filePath);
         if (file.exists()) {
             FileInputStream fileInputStream = new FileInputStream(filePath);
