@@ -99,8 +99,10 @@ public class ChannelClient {
         }
 
         CompletableFuture<TransactionEvent> cf = channel.sendTransaction(response);
-        logger.info(cf.toString());
-
+//        logger.info(cf.toString());
+//        if(cf.isDone()){
+//            logger.info(cf.toString());
+//        }
         return response;
     }
 

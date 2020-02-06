@@ -24,7 +24,7 @@ public class ConfigureConstants {
 //    public static String ORG2 = "org2";
     public static String ADMIN = "admin";
     public static String ADMIN_PASSWORD = "adminpw";
-    public static String CRYPTO_PATH = "/Users/uracle/Documents/hyperledger";
+    public static String CRYPTO_PATH = "/Users/yuwonseon/Documents/hyperledgerls";
     public static String CHANNEL_CONFIG_PATH = "config/channel.tx";
     public static String ORG1_USR_BASE_PATH = CRYPTO_PATH + File.separator + "crypto-config" + File.separator + "peerOrganizations" + File.separator
             + "org1.example.com" + File.separator + "users" + File.separator + "Admin@org1.example.com"

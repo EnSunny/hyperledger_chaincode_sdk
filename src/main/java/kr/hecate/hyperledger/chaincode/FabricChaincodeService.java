@@ -32,9 +32,11 @@ public class FabricChaincodeService {
     private FabricClient fabClient = null;
 
     public FabricChaincodeService (){
+        ConfigureConstants.getInstance();
         connManager = FabricConnManager.getInstance();
         channelClient = connManager.getChannelClient();
         fabClient = connManager.getFabricClient();
+
     }
 
     public String queryChaincode(String funcName, String[] arguments){
@@ -62,7 +64,7 @@ public class FabricChaincodeService {
             request.setFcn(funcName);
             //String[] arguments = { "CAR1", "Chevy", "Volt", "Red", "Nick" };
             request.setArgs(arguments);
-            request.setProposalWaitTime(1000);
+            request.setProposalWaitTime(500);
 
             Map<String, byte[]> tm2 = new HashMap<>();
             tm2.put("HyperLedgerFabric", "TransactionProposalRequest:JavaSDK".getBytes(UTF_8));
@@ -74,7 +76,6 @@ public class FabricChaincodeService {
             Collection<ProposalResponse> responses = channelClient.sendTransactionProposal(request);
             for (ProposalResponse res: responses) {
                 ChaincodeResponse.Status status = res.getStatus();
-                logger.info("Invoke Success.");
                 logger.info(status.toString());
 //                logger.info(responses.);
                // Logger.getLogger(InvokeChaincode.class.getName()).log(Level.INFO,"Invoked createCar on "+ConfigureConstants.CHAINCODE_1_NAME + ". Status - " + status);

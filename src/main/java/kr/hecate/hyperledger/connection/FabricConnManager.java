@@ -50,9 +50,11 @@ public class FabricConnManager {
             caClient = new CAClient(caUrl, null);
 
             // Enroll Admin to Org1MSP
-            UserContext adminUserContext = new UserContext();
+            UserContext adminUserContext;
             adminUserContext = Util.readUserContext(ConfigureConstants.ORG1,ConfigureConstants.ADMIN);
             if(adminUserContext == null) {
+
+                adminUserContext = new UserContext();
                 adminUserContext.setName(ConfigureConstants.ADMIN);
                 adminUserContext.setAffiliation(ConfigureConstants.ORG1);
                 adminUserContext.setMspId(ConfigureConstants.ORG1_MSP);
@@ -65,16 +67,16 @@ public class FabricConnManager {
         } catch (IllegalAccessException | InstantiationException | CryptoException
                 | InvocationTargetException | InvalidArgumentException | MalformedURLException
                 | ClassNotFoundException | NoSuchMethodException e  ) {
-            logger.error(e.toString());
+            e.printStackTrace();
         } catch ( Exception e) {
-            logger.error(e.toString());
+//            logger.error(e.toString());
+            e.printStackTrace();
         }
     }
 
     private void setupChannelClient() {
         try {
             m_channelClient = m_fabClient.createChannelClient(ConfigureConstants.CHANNEL_NAME);
-
             Channel channel = m_channelClient.getChannel();
             Peer peer = m_fabClient.getInstance().newPeer(ConfigureConstants.ORG1_PEER_0, ConfigureConstants.ORG1_PEER_0_URL);
             EventHub eventHub = m_fabClient.getInstance().newEventHub("eventhub01", "grpc://localhost:7053");
