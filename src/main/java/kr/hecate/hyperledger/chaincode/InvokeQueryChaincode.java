@@ -47,7 +47,7 @@ public class InvokeQueryChaincode {
             ChaincodeID ccid = ChaincodeID.newBuilder().setName(ConfigureConstants.CHAINCODE_1_NAME).build();
             request.setChaincodeID(ccid);
             request.setFcn("createCar");
-            String[] arguments = { "CAR1", "Chevy", "Volt", "Red", "Nick" };
+            String[] arguments = { "CAR10", "Chevy", "Volt", "Red", "Nick" };
             request.setArgs(arguments);
             request.setProposalWaitTime(1000);
 
@@ -69,7 +69,7 @@ public class InvokeQueryChaincode {
             }
 
             Thread.sleep(10000);
-            String[] args1 = {"CAR1"};
+            String[] args1 = {"CAR10"};
             Collection<ProposalResponse>  responses1Query = channelClient.queryByChainCode("fabcar", "queryCar", args1);
             for (ProposalResponse pres : responses1Query) {
                 String stringResponse = new String(pres.getChaincodeActionResponsePayload());

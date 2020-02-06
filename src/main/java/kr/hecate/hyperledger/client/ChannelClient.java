@@ -54,7 +54,7 @@ public class ChannelClient {
      * @throws InvalidArgumentException
      * @throws ProposalException
      */
-    public Collection<ProposalResponse> queryByChainCode(String chaincodeName, String functionName, String[] args) throws InvalidArgumentException, ProposalException {
+    public Collection<ProposalResponse> queryByChainCode(String chaincodeName, String functionName, String[] args) {
         logger.info("Querying " + functionName + " on channel " + channel.getName());
 
         Collection<ProposalResponse> response = null;

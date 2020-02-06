@@ -15,10 +15,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
+import static kr.hecate.hyperledger.config.ConfigureConstants.EXPECTED_EVENT_DATA;
+import static kr.hecate.hyperledger.config.ConfigureConstants.EXPECTED_EVENT_NAME;
 
 public class InvokeChaincode {
-    private static final byte[] EXPECTED_EVENT_DATA = "!".getBytes(UTF_8);
-    private static final String EXPECTED_EVENT_NAME = "event";
 
     public static void main(String args[]) {
         try {
